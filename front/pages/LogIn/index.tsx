@@ -25,7 +25,8 @@ const LogIn = () => {
           },
         )
         .then((response) => {
-            revalidate(); 
+            // revalidate(); 
+            mutate(response.data, false);
             navigate('/workspace/channel'); // navigate to another route
         })
         .catch((error) => {

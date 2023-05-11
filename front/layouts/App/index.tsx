@@ -3,12 +3,13 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import loadable, { DefaultComponent } from '@loadable/component';
 import { ComponentType } from 'react';
 
+
 const LogIn = loadable(
   () => import('@pages/LogIn').then(({ default: module }) => module) as Promise<ComponentType<any>>,
 );
 
 const SignUp = loadable(()=> import('@pages/SignUp'));
-const Channel = loadable(()=> import('@pages/Channel'));
+const Workspace = loadable(()=> import('@layouts/Workspace'));
 
 
 
@@ -20,7 +21,9 @@ const App = () => {
       <Route path="/" element={<Navigate to="/login" />} />
       <Route path="/login" element={<LogIn />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/workspace/channel" element={<Channel />} />
+      <Route path="/workspace" element={<Workspace />} >
+        
+      </Route>
     </Routes>
   );
 };
