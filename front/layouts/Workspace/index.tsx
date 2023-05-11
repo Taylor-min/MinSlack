@@ -11,11 +11,11 @@ const Channel = loadable(()=> import('@pages/Channel'));
 const DirectMessage = loadable(()=> import('@pages/DirectMessage'));
 
 interface IProps {
-    children: React.ReactNode;
+    children?: ReactNode;
 }
 
-const Workspace= () => {
-    const { data, error, revalidate, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+const Workspace: FC<IProps> = ({ children }) => {
+    const { data, error, revalidate, mutate } = useSWR('http://localhost:3095/api/users', fetcher );
     const navigate = useNavigate(); // useNavigate hook to navigate to other routes
     const onLogout = useCallback(() => {
         axios
@@ -50,8 +50,8 @@ const Workspace= () => {
                 </Channels>
                 <Chats>    
                     <Routes>
-                        <Route path="/workspace/channel" element={<Channel />} />
-                        <Route path="/workspace/dm" element={<DirectMessage />} />
+                        <Route path="channel" element={<Channel />} />
+                        <Route path="dm" element={<DirectMessage />} />
                     </Routes>
                 </Chats>
             </WorkspaceWrapper>
